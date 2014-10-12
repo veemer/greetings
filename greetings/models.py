@@ -6,7 +6,7 @@ from django.db import models
 class Category(models.Model):
 
     name = models.CharField(max_length=128)
-    parent = models.ForeignKey(Category, blank=True, null=True)
+    parent = models.ForeignKey('Category', blank=True, null=True)
 
 
 class Greeting(models.Model):
