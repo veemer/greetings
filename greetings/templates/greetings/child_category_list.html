@@ -1,0 +1,7 @@
+<h1>Child</h1>
+
+<h1>{{ root_cat }}</h1>
+
+{% for cat in child_categories %}
+    <a href="{% url 'greetings' cat.id %}">{{ cat }}</a><br>
+{% endfor %}

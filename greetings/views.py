@@ -32,7 +32,7 @@ class ChildCategoryList(ListView):
 
     def dispatch(self, request, *args, **kwargs):
         
-        self.root_category = get_object_or_404(Category, pk=kwargs['category'])
+        self.root_category = get_object_or_404(Category, pk=kwargs['category_id'])
         return super(ChildCategoryList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
@@ -42,7 +42,7 @@ class ChildCategoryList(ListView):
 
     def get_context_data(self, **kwargs):
         
-        context = super(GreetingsList, self).get_context_data(**kwargs)
+        context = super(ChildCategoryList, self).get_context_data(**kwargs)
         context['root_cat'] = self.root_category
 
         return context
@@ -57,8 +57,8 @@ class GreetingsList(ListView):
 
     def dispatch(self, request, *args, **kwargs):
         
-        self.category = get_object_or_404(Category, pk=kwargs['category'])
-        return super(GreetingsList).dispatch(request, *args, **kwargs)
+        self.category = get_object_or_404(Category, pk=kwargs['category_id'])
+        return super(GreetingsList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
 
@@ -68,7 +68,7 @@ class GreetingsList(ListView):
     def get_context_data(self, **kwargs):
 
         context = super(GreetingsList, self).get_context_data(**kwargs)
-        context['current_cat'] = self.category
-        context['root_cat'] = self.category.parent
+        context['current_category'] = self.category
+        context['root_category'] = self.category.parent
 
         return context
