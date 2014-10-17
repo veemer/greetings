@@ -32,7 +32,6 @@ class BaseMixin(object):
                 self.child_cat = cat
             else:
                 self.root_cat = cat
-                self.child_cat = self.root_cat.get_childs().first()
 
             if self.root_cat:
                 self.child_cats = self.root_cat.get_childs().order_by('name')
@@ -53,7 +52,19 @@ class BaseMixin(object):
         return context
 
 
-class MainView(BaseMixin, TemplateView):
+class MainView(BaseMixin, ListView):
+
+    template_name = 'greetings/base.html'
+    context_object_name = 'greetings'
+    model = Greeting
+    paginate_by = 100
+
+    def get_queryset(self):
+        qs = super(MainView, self).get_queryset()
+        return qs.filter(for_main=True)
+
+
+class ChildCategoryView(BaseMixin, TemplateView):
 
     template_name = 'greetings/base.html'
 

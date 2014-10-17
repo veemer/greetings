@@ -71,9 +71,10 @@
                                 <li id="id-profile">
                                     <div class="timeline-badge default"><i class="fa fa-bookmark-o "></i></div>
                                     <h3 class="timeline-head">
-                                        Поздравления {{ child_cat }}
-                                        {% if page_obj.number > 1 %}
-                                        страница {{ page_obj.number }}
+                                        {% if child_cat %}
+                                            Поздравления {{ child_cat }} {% if page_obj.number > 1 %} страница {{ page_obj.number }} {% endif %}
+                                        {% else %}
+                                            Лучшие поздравления
                                         {% endif %}
                                     </h3>
                                 </li>
