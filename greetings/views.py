@@ -7,68 +7,65 @@ from django.views.generic.list import ListView
 from greetings.models import Category, Greeting
 
 
-class MainView(TemplateView):
+class BaseMixin(object):
 
-    template_name = 'greetings/main.html'
+    template_name = 'greetings/base.html'
 
+    root_cat = None
+    root_cats = None
 
-class RootCategoryList(ListView):
-
-    template_name = 'greetings/root_category_list.html'
-    context_object_name = 'root_categories'
-    model = Category
-
-    def get_queryset(self):
-
-        qs = super(RootCategoryList, self).get_queryset()
-        return qs.filter(parent=None)
-
-
-class ChildCategoryList(ListView):
-
-    template_name = 'greetings/child_category_list.html'
-    context_object_name = 'child_categories'
-    model = Category
+    child_cat = None
+    child_cats = None
 
     def dispatch(self, request, *args, **kwargs):
-        
-        self.root_category = get_object_or_404(Category, pk=kwargs['category_id'])
-        return super(ChildCategoryList, self).dispatch(request, *args, **kwargs)
 
-    def get_queryset(self):
+        category_id = kwargs.get('category_id', None)
 
-        qs = super(ChildCategoryList, self).get_queryset()
-        return qs.filter(parent=self.root_category)
+        self.root_cats = Category.objects.filter(parent__isnull=True)
+
+        if category_id:
+
+            cat = get_object_or_404(Category, pk=category_id)
+
+            if cat.parent:
+                self.root_cat = cat.parent
+                self.child_cat = cat
+            else:
+                self.root_cat = cat
+                self.child_cat = self.root_cat.get_childs().first()
+
+            if self.root_cat:
+                self.child_cats = self.root_cat.get_childs().order_by('name')
+
+        return super(BaseMixin, self).dispatch(request, *args, **kwargs)
+
 
     def get_context_data(self, **kwargs):
+
+        context = super(BaseMixin, self).get_context_data(**kwargs)
         
-        context = super(ChildCategoryList, self).get_context_data(**kwargs)
-        context['root_cat'] = self.root_category
+        context['root_cat'] = self.root_cat
+        context['root_cats'] = self.root_cats
+
+        context['child_cat'] = self.child_cat
+        context['child_cats'] = self.child_cats
 
         return context
 
 
-class GreetingsList(ListView):
+class MainView(BaseMixin, TemplateView):
 
-    template_name = 'greetings/greetings_list.html'
+    template_name = 'greetings/base.html'
+
+
+class GreetingsList(BaseMixin, ListView):
+
+    template_name = 'greetings/base.html'
     context_object_name = 'greetings'
     model = Greeting
-    paginate_by = 40
-
-    def dispatch(self, request, *args, **kwargs):
-        
-        self.category = get_object_or_404(Category, pk=kwargs['category_id'])
-        return super(GreetingsList, self).dispatch(request, *args, **kwargs)
+    paginate_by = 20
 
     def get_queryset(self):
 
         qs = super(GreetingsList, self).get_queryset()
-        return qs.filter(category=self.category)
-
-    def get_context_data(self, **kwargs):
-
-        context = super(GreetingsList, self).get_context_data(**kwargs)
-        context['current_category'] = self.category
-        context['root_category'] = self.category.parent
-
-        return context
+        return qs.filter(category=self.child_cat)

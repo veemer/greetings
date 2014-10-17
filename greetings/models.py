@@ -8,6 +8,9 @@ class Category(models.Model):
     name = models.CharField(max_length=128)
     parent = models.ForeignKey('Category', blank=True, null=True)
 
+    def get_childs(self):
+        return self.category_set.all().order_by('name')
+
     def __unicode__(self):
         return self.name
 
