@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Marinka - Responsive CV</title>
+    <title>Поздравления с днем рождения</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
@@ -70,14 +70,18 @@
                                 <!-- start:profile -->
                                 <li id="id-profile">
                                     <div class="timeline-badge default"><i class="fa fa-bookmark-o "></i></div>
-                                    <h1 class="timeline-head">{{ root_cat }} >> {{ child_cat }}</h1>
+                                    <h3 class="timeline-head">
+                                        Поздравления {{ child_cat }}
+                                        {% if page_obj.number > 1 %}
+                                        страница {{ page_obj.number }}
+                                        {% endif %}
+                                    </h3>
                                 </li>
                                 {% for greeting in greetings %}
                                     <li id="profile">
                                         <div class="timeline-badge primary"></div>
                                         <div class="timeline-panel">
                                             <p>{{ greeting.text }}</p>
-                                            <small><i class="fa fa-copy" data-original-title="" title=""></i> <a href="#x">Копировать</a></small>
                                         </div>
                                     </li>
                                 {% endfor %}
