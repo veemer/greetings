@@ -112,10 +112,10 @@ class ChildCategoryView(BaseMixin, SeoMixin, TemplateView):
     template_name = 'greetings/base.html'
 
     def get_h1(self):
-        return u'Поздравления {}'.format(self.root_cat.name)
+        return u'Поздравления \u2192 {}'.format(self.root_cat.name)
 
     def get_title(self):
-        return self.get_h1()
+        return u'Поздравления {}'.format(self.root_cat.name)
 
     def get_meta_description(self):
         return u'Поздравления с днем рождения {}'.format(self.root_cat.name)
