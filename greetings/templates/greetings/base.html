@@ -83,6 +83,9 @@
                                         <div class="timeline-badge primary"></div>
                                         <div class="timeline-panel">
                                             <p>{{ greeting.text }}</p>
+                                            {% if is_top %}
+                                                <small><i class="fa fa-bookmark-o"></i> <a href="{% url 'greetings' greeting.category.id %}">Поздравления {{ greeting.category}}</a></small>
+                                            {% endif %}
                                         </div>
                                     </li>
                                 {% endfor %}

@@ -63,6 +63,13 @@ class MainView(BaseMixin, ListView):
         qs = super(MainView, self).get_queryset()
         return qs.filter(for_main=True)
 
+    def get_context_data(self, **kwargs):
+
+        context = super(MainView, self).get_context_data(**kwargs)
+        context['is_top'] = True
+
+        return context
+
 
 class ChildCategoryView(BaseMixin, TemplateView):
 
