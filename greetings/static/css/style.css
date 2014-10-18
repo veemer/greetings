@@ -853,4 +853,18 @@ footer p{
 a.play-link {
     text-decoration: none;
     color: #7f8c8d;
+    font-weight: 600;
+    color: #7f8c8d;
+    font-size: 18pt;
+    display: block;
+}
+
+a.greetings-title {
+    color: #34495e;
+    font-weight: 600;
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: block;
+    line-height: 1.1;
 }
