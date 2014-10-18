@@ -7,6 +7,30 @@ from django.views.generic.list import ListView
 from greetings.models import Category, Greeting
 
 
+class SeoMixin(object):
+
+    def get_h1(self):
+        return ''
+
+    def get_title(self):
+        return ''
+
+    def get_meta_description(self):
+        return ''
+
+    def get_meta_keywords(self):
+        return ''
+
+    def get_context_data(self, **kwargs):
+        context = super(SeoMixin, self).get_context_data(**kwargs)
+        context['h1_title'] = self.get_h1()
+        context['title'] = self.get_title()
+        context['meta_description'] = self.get_meta_description()
+        context['meta_keywords'] = self.get_meta_keywords()
+
+        return context
+
+
 class BaseMixin(object):
 
     template_name = 'greetings/base.html'
@@ -52,7 +76,7 @@ class BaseMixin(object):
         return context
 
 
-class MainView(BaseMixin, ListView):
+class MainView(BaseMixin, SeoMixin, ListView):
 
     template_name = 'greetings/base.html'
     context_object_name = 'greetings'
@@ -70,13 +94,39 @@ class MainView(BaseMixin, ListView):
 
         return context
 
+    def get_h1(self):
+        return u'Лучшие поздравления с днем рождения'
 
-class ChildCategoryView(BaseMixin, TemplateView):
+    def get_title(self):
+        return self.get_h1()
+
+    def get_meta_description(self):
+        return u'Здесь вы cможете подобрать поздравления с днем рождения для родителей, второй половинке, коллегам по работе или друзьям'
+
+    def get_meta_keywords(self):
+        return u'поздравления день рождения лучшие'
+
+
+class ChildCategoryView(BaseMixin, SeoMixin, TemplateView):
 
     template_name = 'greetings/base.html'
 
+    def get_h1(self):
+        return u'Поздравления {}'.format(self.root_cat.name)
 
-class GreetingsList(BaseMixin, ListView):
+    def get_title(self):
+        return self.get_h1()
+
+    def get_meta_description(self):
+        return u'Поздравления с днем рождения {}'.format(self.root_cat.name)
+
+    def get_meta_keywords(self):
+        cats_names = [c.name for c in self.child_cats]
+        cats = ' '.join(cats_names[:10])
+        return u'поздравления день рождения {}'.format(cats)
+
+
+class GreetingsList(BaseMixin, SeoMixin, ListView):
 
     template_name = 'greetings/base.html'
     context_object_name = 'greetings'
@@ -87,3 +137,19 @@ class GreetingsList(BaseMixin, ListView):
 
         qs = super(GreetingsList, self).get_queryset()
         return qs.filter(category=self.child_cat)
+
+    def get_h1(self):
+        page = self.kwargs.get('page', 1)
+        if page != 1:
+            return u'Поздравления с днем рождения {} - страница {}'.format(self.child_cat.name, page)
+        else:
+            return u'Поздравления с днем рождения {}'.format(self.child_cat.name)
+
+    def get_title(self):
+        return self.get_h1()
+
+    def get_meta_description(self):
+        return u'Здесь вы сможете найти поздравления с днем рождения {}'.format(self.child_cat.name)
+
+    def get_meta_keywords(self):
+        return u'поздравления день рождения {}'.format(self.child_cat.name)
