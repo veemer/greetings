@@ -31,6 +31,27 @@ class RootCatsFilter(admin.SimpleListFilter):
             return queryset.filter(parent=cat)
 
 
+class MainPageGreetingsFilter(admin.SimpleListFilter):
+
+    title = 'Greetings'
+    parameter_name = 'for_main'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('True', 'For main page'),
+        )
+
+    def queryset(self, request, queryset):
+
+        for_main = self.value()
+
+        if for_main == 'True':
+            return queryset.filter(for_main=True)
+
+        else:
+            return queryset
+
+
 class CategoryAdmin(admin.ModelAdmin):
 
     def greetings_link(category):
@@ -50,7 +71,7 @@ class GreetingAdmin(admin.ModelAdmin):
 
     model = Greeting
     list_display = ('teaser', 'category')
-    list_filter = ('category',)
+    list_filter = ('category', MainPageGreetingsFilter)
     search_fields = ('text',)
 
 
