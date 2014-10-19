@@ -18,9 +18,15 @@ class RootCatsFilter(admin.SimpleListFilter):
         return filters
 
     def queryset(self, request, queryset):
+        
         cat = self.value()
+        
+        if cat is None:
+            return queryset
+        
         if cat == 'root':
             return queryset.filter(parent__isnull=True)
+        
         else:
             return queryset.filter(parent=cat)
 
