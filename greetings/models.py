@@ -3,6 +3,12 @@ from django.db import models
 # Create your models here.
 
 
+class GreetingManager(models.Manager):
+
+    def get_queryset(self):
+        return super(GreetingManager, self).get_queryset().order_by('-sort')
+
+
 class Category(models.Model):
 
     name = models.CharField(max_length=128)
@@ -22,6 +28,8 @@ class Greeting(models.Model):
     for_main = models.BooleanField(default=False)
     from_pozdravok = models.BooleanField(default=False)
     sort = models.IntegerField(default=0)
+
+    objects = GreetingManager()
 
     def __unicode__(self):
         return self.text[:100]
