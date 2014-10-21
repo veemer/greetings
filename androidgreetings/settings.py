@@ -11,11 +11,16 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+from django.conf.global_settings import STATICFILES_FINDERS as SFF
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
+)
+
+STATICFILES_FINDERS = SFF + (
+    'compressor.finders.CompressorFinder',
 )
 
 # Quick-start development settings - unsuitable for production
@@ -42,6 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
     'greetings',
 )
 
@@ -88,6 +94,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+COMPRESS_ENABLED = True
+STATIC_ROOT = os.path.join(BASE_DIR, 'greetings', 'static')
+#COMPRESS_ROOT = os.path.join(BASE_DIR, 'static')
 
 try:
     from production_settings import *

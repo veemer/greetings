@@ -8,7 +8,12 @@
     <title>{{ title }}</title>
     <meta name="description" content="{{ meta_description }}">
     <meta name="keywords" content="{{ meta_keywords }}">
+
+    {% load compress %}
+
+    {% compress css %}
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    {% endcompress %}
     <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -123,6 +128,7 @@
     </footer>
     <!-- end:footer -->
 
+    {% compress js %}
     <!-- start:javascript -->
     <script src="/static/js/jquery-1.11.1.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
@@ -130,6 +136,7 @@
     <script src="/static/js/portfolio.jquery.js"></script>
     <script src="/static/js/jquery.scrollUp.js"></script>
     <!-- end:javascript -->
+    {% endcompress %}
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter24054052 = new Ya.Metrika({id:24054052, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/24054052" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
