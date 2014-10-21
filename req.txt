@@ -3,3 +3,4 @@ MySQL-python
 django-suit
 django_compressor
 django-htmlmin
+django-static-sitemaps
