@@ -1,1 +1,1 @@
-Sitemap: http://androidgreetings.ru/sitemap.xml
+Sitemap: http://androidgreetings.ru/static/sitemap.xml
