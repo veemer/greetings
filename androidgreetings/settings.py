@@ -102,10 +102,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'greetings', 'static')
 
-COMPRESS_ENABLED = True
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',  'compressor.filters.cssmin.CSSMinFilter']
-
-HTML_MINIFY = True
 
 STATICSITEMAPS_ROOT_SITEMAP = 'greetings.sitemaps.sitemaps'
 
