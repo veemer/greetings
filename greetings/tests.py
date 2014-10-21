@@ -26,3 +26,20 @@ class TestViews(TestCase):
         for greeting in response.context['greetings']:
             self.assertTrue(greeting.for_main)
 
+    def test_child_category_view(self):
+        
+        root_cat = Category.objects.create(name='root cat 1')
+        child_cats = []
+        for i in range(0, 10):
+            child_cats.append(Category.objects.create(name='cat {}'.format(i), parent=root_cat))
+
+        url = reverse('child_categories', args=(root_cat.id,))
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+        for cat in child_cats:
+            self.assertIn(cat, response.context['child_cats'])
+        
+        self.assertIn(root_cat, response.context['root_cats'])
+
