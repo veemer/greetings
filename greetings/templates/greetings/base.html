@@ -21,18 +21,18 @@
 <body id="page-top">
 
     <!-- start:main -->
-    <div class="container" id="main">
+    <div itemscope itemtype="http://schema.org/SoftwareApplication" class="container" id="main">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 white">
                 <div id="sidebar">
                     <div class="user">
                         <div class="text-center">
-                            <img src="/static/img/android-greetings-logo.png">
+                            <img itemprop="image" src="/static/img/android-greetings-logo.png">
                         </div>
                         <div class="user-head">
-                            <a href="/" class="greetings-title">Поздравления с днем рождения</a>
+                            <a href="/" class="greetings-title"><span itemprop="name">Поздравления с днем рождения</span></a>
                             <div class="hr-center"></div>
-                            <a href="https://play.google.com/store/apps/details?id=dev.eremeev.greetings" class="play-link" target="blank">Android приложение</a>
+                            <a itemprop="url" href="https://play.google.com/store/apps/details?id=dev.eremeev.greetings" class="play-link" target="blank">Android приложение</a>
                         </div>
                         <div class="text-center">
                             {% for c in root_cats %}
@@ -109,6 +109,7 @@
                 </div>
             </div>
         </div>
+        <meta itemprop="operatingSystem" content="Android">
     </div>
     <!-- end:main -->
 
