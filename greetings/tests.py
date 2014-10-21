@@ -26,6 +26,8 @@ class TestViews(TestCase):
         for greeting in response.context['greetings']:
             self.assertTrue(greeting.for_main)
 
+        self.assertIn(cat, response.context['root_cats'])
+
     def test_child_category_view(self):
         
         root_cat = Category.objects.create(name='root cat 1')
