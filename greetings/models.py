@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -16,6 +17,12 @@ class Category(models.Model):
 
     def get_childs(self):
         return self.category_set.all().order_by('name')
+
+    def get_absolute_url(self):
+        if self.parent:
+            return reverse('greetings', args=(self.id,))
+        else:
+            return reverse('child_categories', args=(self.id,))
 
     def __unicode__(self):
         return self.name

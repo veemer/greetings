@@ -45,9 +45,12 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'compressor',
+    'static_sitemaps',
     'greetings',
 )
 
@@ -97,11 +100,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-COMPRESS_ENABLED = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'greetings', 'static')
+
+COMPRESS_ENABLED = True
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',  'compressor.filters.cssmin.CSSMinFilter']
 
 HTML_MINIFY = True
+
+STATICSITEMAPS_ROOT_SITEMAP = 'greetings.sitemaps.sitemaps'
+
+SITE_ID = 1
 
 try:
     from production_settings import *
