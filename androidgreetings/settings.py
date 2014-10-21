@@ -59,6 +59,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
 )
 
 ROOT_URLCONF = 'androidgreetings.urls'
@@ -97,6 +100,8 @@ STATIC_URL = '/static/'
 COMPRESS_ENABLED = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'greetings', 'static')
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',  'compressor.filters.cssmin.CSSMinFilter']
+
+HTML_MINIFY = True
 
 try:
     from production_settings import *
