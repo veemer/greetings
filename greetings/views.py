@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, Http404
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 
@@ -110,6 +110,14 @@ class MainView(BaseMixin, SeoMixin, ListView):
 class ChildCategoryView(BaseMixin, SeoMixin, TemplateView):
 
     template_name = 'greetings/base.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        response = super(ChildCategoryView, self).dispatch(request, *args, **kwargs)
+
+        if self.child_cat:
+            raise Http404
+
+        return response
 
     def get_h1(self):
         return u'Поздравления \u2192 {}'.format(self.root_cat.name)
