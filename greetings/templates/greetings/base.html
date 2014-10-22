@@ -94,7 +94,11 @@
                                     <div class="col-md-11">
                                         <ul class="pager">
                                             {% if page_obj.has_previous  %}
-                                                <li class="previos"><a href="{% url 'greetings' child_cat.id page_obj.previous_page_number %}">&larr; Предыдущие</a></li>
+                                                {% if page_obj.previous_page_number == 1 %}
+                                                    <li class="previos"><a href="{% url 'greetings' child_cat.id %}">&larr; Предыдущие</a></li>
+                                                {% else %}
+                                                    <li class="previos"><a href="{% url 'greetings' child_cat.id page_obj.previous_page_number %}">&larr; Предыдущие</a></li>
+                                                {% endif %}
                                             {% else %}
                                                 <li class="previos disabled"><a href="#x">&larr; Предыдущие</a></li>
                                             {% endif %}

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render, get_object_or_404, Http404
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 
@@ -140,6 +142,17 @@ class GreetingsList(BaseMixin, SeoMixin, ListView):
     context_object_name = 'greetings'
     model = Greeting
     paginate_by = 20
+
+    def dispatch(self, request, *args, **kwargs):
+
+        if int(self.kwargs.get('page', 0)) == 1:
+
+            category = get_object_or_404(Category, pk=self.kwargs['category_id'], parent__isnull=False)
+            redirect_url = reverse('greetings', args=(category.id,))
+            return HttpResponseRedirect(redirect_url, status=301)
+
+        else:
+            return super(GreetingsList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
 
