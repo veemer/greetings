@@ -102,7 +102,7 @@
                                             {% if page_obj.has_next %}
                                                 <li><a href="{% url 'greetings' child_cat.id page_obj.next_page_number %}">Следующие &rarr;</a></li>
                                             {% else %}
-                                                <li class="disabled"><a href="#x">Следующие &larr;</a></li>
+                                                <li class="disabled"><a href="#x">Следующие &rarr;</a></li>
                                             {% endif %}
                                         </ul>
                                     </div>
