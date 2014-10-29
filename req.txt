@@ -4,3 +4,5 @@ django-suit
 django_compressor
 django-htmlmin
 django-static-sitemaps
+Pillow
+git+https://github.com/mariocesar/sorl-thumbnail.git

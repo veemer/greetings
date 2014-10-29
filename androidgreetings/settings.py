@@ -49,9 +49,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
-    'compressor',
+    'compressor',    
     'static_sitemaps',
+    'sorl.thumbnail',
     'greetings',
+    'blog',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,6 +103,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'greetings', 'static')
+
+MEDIA_URL = '/public/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'androidgreetings', 'public', 'media')
 
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',  'compressor.filters.cssmin.CSSMinFilter']
 
