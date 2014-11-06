@@ -48,5 +48,4 @@ $(function(){
 
 $(document).ready(function() {
     var client = new ZeroClipboard( $('.copy') );
-    console.log(111);
 });
