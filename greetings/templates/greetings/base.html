@@ -85,6 +85,10 @@
                                             {% if is_top %}
                                                 <small><i class="fa fa-bookmark-o"></i> <a href="{% url 'greetings' greeting.category.id %}">Поздравления {{ greeting.category}}</a></small>
                                             {% endif %}
+
+                                            <small><i class="fa fa-copy" data-original-title="" title=""></i> 
+                                                <span class="copy" data-clipboard-text="{{ greeting.text }}">Копировать</span>
+                                            </small>
                                         </div>
                                     </li>
                                 {% endfor %}
@@ -138,6 +142,7 @@
     <script src="/static/js/marinka.js"></script>
     <script src="/static/js/portfolio.jquery.js"></script>
     <script src="/static/js/jquery.scrollUp.js"></script>
+    <script src="/static/js/ZeroClipboard.js"></script>
     <!-- end:javascript -->
     {% endcompress %}
 
