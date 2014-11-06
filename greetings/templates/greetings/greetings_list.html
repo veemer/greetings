@@ -1,0 +1,51 @@
+{% extends 'greetings/base.html' %}
+
+{% block content %}
+
+    <ul class="timeline">
+        <!-- start:profile -->
+        {% for greeting in greetings %}
+            <li id="profile">
+                <div class="timeline-badge primary"></div>
+                <div class="timeline-panel">
+                    <p>{{ greeting.text }}</p>
+                    {% if is_top %}
+                        <small>
+                            <i class="fa fa-bookmark-o"></i>
+                            <a href="{% url 'greetings' greeting.category.id %}">Поздравления {{ greeting.category}}</a>
+                        </small>
+                    {% endif %}
+
+                    <small>
+                        <i class="fa fa-copy" data-original-title="" title=""></i> 
+                        <span class="copy" data-clipboard-text="{{ greeting.text }}" data-greeting-id="{{ greeting.id }}">Копировать</span>
+                    </small>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if is_paginated %}
+        <div class="row">
+            <div class="col-md-11">
+                <ul class="pager">
+                    {% if page_obj.has_previous  %}
+                        {% if page_obj.previous_page_number == 1 %}
+                            <li class="previos"><a href="{% url 'greetings' child_cat.id %}">&larr; Предыдущие</a></li>
+                        {% else %}
+                            <li class="previos"><a href="{% url 'greetings' child_cat.id page_obj.previous_page_number %}">&larr; Предыдущие</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li class="previos disabled"><a href="#x">&larr; Предыдущие</a></li>
+                    {% endif %}
+
+                    {% if page_obj.has_next %}
+                        <li><a href="{% url 'greetings' child_cat.id page_obj.next_page_number %}">Следующие &rarr;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="#x">Следующие &rarr;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

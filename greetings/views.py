@@ -80,7 +80,7 @@ class BaseMixin(object):
 
 class MainView(BaseMixin, SeoMixin, ListView):
 
-    template_name = 'greetings/base.html'
+    template_name = 'greetings/greetings_list.html'
     context_object_name = 'greetings'
     model = Greeting
     paginate_by = 100
@@ -111,7 +111,7 @@ class MainView(BaseMixin, SeoMixin, ListView):
 
 class ChildCategoryView(BaseMixin, SeoMixin, TemplateView):
 
-    template_name = 'greetings/base.html'
+    template_name = 'greetings/child_categories.html'
 
     def dispatch(self, request, *args, **kwargs):
         response = super(ChildCategoryView, self).dispatch(request, *args, **kwargs)
@@ -138,7 +138,7 @@ class ChildCategoryView(BaseMixin, SeoMixin, TemplateView):
 
 class GreetingsList(BaseMixin, SeoMixin, ListView):
 
-    template_name = 'greetings/base.html'
+    template_name = 'greetings/greetings_list.html'
     context_object_name = 'greetings'
     model = Greeting
     paginate_by = 20
