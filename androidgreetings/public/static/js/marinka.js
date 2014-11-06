@@ -52,6 +52,7 @@ $(document).ready(function() {
     client.on( "ready", function( readyEvent ) {
         client.on( "aftercopy", function( event ) {
             alertify.log("Скопировано в буфер обмена");
+            yaCounter24054052.reachGoal("greetings_copy");
         });
     });
 
