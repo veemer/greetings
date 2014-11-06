@@ -881,3 +881,7 @@ span.copy {
 small {
     margin-right: 8px;
 }
+
+.alertify-logs {
+    top: 10px;
+}

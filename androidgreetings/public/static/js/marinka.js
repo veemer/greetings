@@ -48,4 +48,11 @@ $(function(){
 
 $(document).ready(function() {
     var client = new ZeroClipboard( $('.copy') );
+
+    client.on( "ready", function( readyEvent ) {
+        client.on( "aftercopy", function( event ) {
+            alertify.log("Скопировано в буфер обмена");
+        });
+    });
+
 });
