@@ -85,11 +85,15 @@
                                         <div class="timeline-panel">
                                             <p>{{ greeting.text }}</p>
                                             {% if is_top %}
-                                                <small><i class="fa fa-bookmark-o"></i> <a href="{% url 'greetings' greeting.category.id %}">Поздравления {{ greeting.category}}</a></small>
+                                                <small>
+                                                    <i class="fa fa-bookmark-o"></i>
+                                                    <a href="{% url 'greetings' greeting.category.id %}">Поздравления {{ greeting.category}}</a>
+                                                </small>
                                             {% endif %}
 
-                                            <small><i class="fa fa-copy" data-original-title="" title=""></i> 
-                                                <span class="copy" data-clipboard-text="{{ greeting.text }}">Копировать</span>
+                                            <small>
+                                                <i class="fa fa-copy" data-original-title="" title=""></i> 
+                                                <span class="copy" data-clipboard-text="{{ greeting.text }}" data-greeting-id="{{ greeting.id }}">Копировать</span>
                                             </small>
                                         </div>
                                     </li>

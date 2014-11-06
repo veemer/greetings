@@ -50,9 +50,15 @@ $(document).ready(function() {
     var client = new ZeroClipboard( $('.copy') );
 
     client.on( "ready", function( readyEvent ) {
+
         client.on( "aftercopy", function( event ) {
+
             alertify.log("Скопировано в буфер обмена");
+
+            greeting_id = event.target.getAttribute('data-greeting-id');
+            ga('send', 'event', 'button', 'click', 'copy', greeting_id);
             yaCounter24054052.reachGoal("greetings_copy");
+
         });
     });
 
