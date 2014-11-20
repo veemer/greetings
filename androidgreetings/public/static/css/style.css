@@ -330,7 +330,7 @@ body{
 
 #content .navbar{
 	margin-bottom: 0;
-	background-color: #ecf0f1;
+	background-color: #fff;
 }
 
 #content .navbar-default .navbar-nav > .active > a, 
@@ -347,6 +347,7 @@ body{
 #content .navbar-default .navbar-form{
 	margin-top: 10px;
 	margin-bottom: 10px;
+	margin-left: 10px;
 }
 
 #content .navbar-default ul.nav li a{
