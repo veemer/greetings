@@ -1,0 +1,30 @@
+{% extends 'greetings/base.html' %}
+
+{% block content %}
+<ul class="timeline">
+	<li>
+      	<div class="timeline-badge primary"></div>
+      	<div class="timeline-panel">
+      		<div class="row" id="blog">
+      			<div class="col-md-7 col-sm-6 col-xs-12">
+      				<div class="blog-content">
+      					<h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
+      					<p>{{ post.preview_text|linebreaksbr }}</p>
+      				</div>
+      			</div>
+      			<div class="col-md-5 col-sm-6 col-xs-12">
+      				<img src="{{ post.image.url }}" class="img-responsive">
+      			</div>
+      		</div>
+      		<div class="row">
+      			<div class="col-md-12 col-sm-12 col-xs-12">
+      				<div class="blog-content">
+      					<p>{{ post.detail_text|linebreaksbr }}</p>
+      				</div>
+      			</div>
+      			</div>
+      		</div>
+      	</div>
+    </li>
+</ul>
+{% endblock %}
