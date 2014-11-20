@@ -6,4 +6,9 @@ from banners.models import Banner
 # Register your models here.
 
 
-admin.site.register(Banner)
+class BannerAdmin(admin.ModelAdmin):
+
+	list_display = ('name', 'enabled')
+
+
+admin.site.register(Banner, BannerAdmin)
