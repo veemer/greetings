@@ -66,6 +66,22 @@
             <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
                 <div id="content">
                     <!-- start:navbar -->
+                    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+                        <div class="navbar-header page-scroll">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li class="page-scroll{% if request.path == '/' %} active{% endif %}"><a href="#id-profile">// Главная</a></li>
+                                <li class="page-scroll"><a href="#id-profile">// Статьи</a></li>
+                            </ul>
+                        </div>
+                    </nav>
                     <!-- end:navbar -->
 
                     <!-- start:main content -->

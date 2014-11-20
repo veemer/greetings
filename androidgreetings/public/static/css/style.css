@@ -346,6 +346,7 @@ body{
 #content .navbar-default .navbar-collapse, 
 #content .navbar-default .navbar-form{
 	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 #content .navbar-default ul.nav li a{
