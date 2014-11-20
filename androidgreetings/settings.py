@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'greetings',
     'blog',
+    'banners',
 )
 
 MIDDLEWARE_CLASSES = (
