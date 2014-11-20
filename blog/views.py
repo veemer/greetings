@@ -5,9 +5,9 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
 from blog.models import Post
+from greetings.views import BaseMixin
 
-
-class PostsList(ListView):
+class PostsList(BaseMixin, ListView):
 
 	model = Post
 	per_page = 20
@@ -15,7 +15,7 @@ class PostsList(ListView):
 	context_object_name = 'posts'
 
 
-class PostDetail(DetailView):
+class PostDetail(BaseMixin, DetailView):
 
 	model = Post
 	template_name = 'blog/post_detail.html'

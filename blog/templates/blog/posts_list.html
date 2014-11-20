@@ -11,6 +11,7 @@
 	      				<div class="blog-content">
 	      					<h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
 	      					<p>{{ post.preview_text|linebreaksbr }}</p>
+	      					<small><i class="fa fa-external-link"></i><a href="{% url 'post_detail' post.pk %}">Читать далее</a></small>
 	      				</div>
 	      			</div>
 	      			<div class="col-md-5 col-sm-6 col-xs-12">
