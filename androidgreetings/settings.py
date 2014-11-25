@@ -110,7 +110,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'androidgreetings', 'public', 'media')
 
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',  'compressor.filters.cssmin.CSSMinFilter']
 
-STATICSITEMAPS_ROOT_SITEMAP = 'greetings.sitemaps.sitemaps'
+STATICSITEMAPS_ROOT_SITEMAP = 'androidgreetings.sitemaps.sitemaps'
 
 SITE_ID = 1
 
