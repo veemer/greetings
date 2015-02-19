@@ -15,6 +15,9 @@ class Post(models.Model):
     detail_text = models.TextField()
     date_create = models.DateTimeField(default=datetime.now)
 
+    class Meta:
+        ordering = ['date_create']
+
     def get_absolute_url(self):
     	return reverse('post_detail', args=(self.pk,))
 
