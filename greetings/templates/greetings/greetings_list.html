@@ -1,10 +1,12 @@
 {% extends 'greetings/base.html' %}
+{% load banner %}
 
 {% block content %}
 
     <ul class="timeline">
         <!-- start:profile -->
         {% for greeting in greetings %}
+            <!-- text -->
             <li id="profile">
                 <div class="timeline-badge primary"></div>
                 <div class="timeline-panel">
@@ -22,6 +24,13 @@
                     </small>
                 </div>
             </li>
+            <!-- banner -->
+            {% if forloop.counter == 3 %}
+                <li id="profile" class="long-banner">
+                    {% banner 'long' %}
+                </li>
+            {% endif %}
+
         {% endfor %}
     </ul>
     {% if is_paginated %}

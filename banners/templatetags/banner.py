@@ -6,9 +6,11 @@ from banners.models import Banner
 register = template.Library()
 
 @register.simple_tag
-def banner():
-	b = Banner.objects.filter(enabled=True).first()
-	if b:
-		return b.content
+def banner(group_name='default'):
+
+	banner = Banner.objects.filter(enabled=True, group__name=group_name).first()
+
+	if banner:
+		return banner.content
 	else:
 		return ''
