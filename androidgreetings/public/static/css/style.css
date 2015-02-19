@@ -895,3 +895,8 @@ small {
 .post-detail {
 	padding-top: 20px;
 }
+
+div.post-banner {
+    margin-bottom: 20px;
+    position: relative;
+}

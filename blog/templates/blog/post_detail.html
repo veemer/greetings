@@ -1,4 +1,5 @@
 {% extends 'greetings/base.html' %}
+{% load banner %}
 
 {% block content %}
 <ul class="timeline">
@@ -26,9 +27,13 @@
       					<p>{% autoescape off %}{{ post.detail_text|linebreaksbr }}{% endautoescape %}</p>
       				</div>
       			</div>
-      			</div>
       		</div>
       	</div>
     </li>
+
+    <div class="post-banner">
+      {% banner 'long' %}
+    </div>
+
 </ul>
 {% endblock %}
