@@ -12,7 +12,9 @@
                                           <i class="fa fa-calendar" data-original-title="" title=""></i>{{ post.date_create|date:"d M Y f" }}
                                           <i class="fa fa-user" data-original-title="" title=""></i>Admin
                                     </small>
-      					<p>{{ post.preview_text|linebreaksbr }}</p>
+                                    {% autoescape off %}
+      					 <p>{{ post.preview_text|linebreaksbr }}</p>
+                                    {% endautoescape %}
       				</div>
       			</div>
       			<div class="col-md-5 col-sm-6 col-xs-12">
