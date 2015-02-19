@@ -11,6 +11,10 @@
 	      			<div class="col-md-7 col-sm-6 col-xs-12">
 	      				<div class="blog-content">
 	      					<h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
+							<small>
+								<i class="fa fa-calendar" data-original-title="" title=""></i>{{ post.date_create|date:"d M Y h:m" }}
+								<i class="fa fa-user" data-original-title="" title=""></i>Admin
+							</small>
 	      					<p>{{ post.preview_text|linebreaksbr }}</p>
 	      					<small><i class="fa fa-external-link"></i><a href="{% url 'post_detail' post.pk %}">Читать далее</a></small>
 	      				</div>
