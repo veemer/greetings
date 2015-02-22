@@ -9,12 +9,11 @@
       		<div class="row" id="blog">
       			<div class="col-md-7 col-sm-6 col-xs-12">
       				<div class="blog-content">
-                                    <small>
-                                          <i class="fa fa-calendar" data-original-title="" title=""></i>{{ post.date_create|date:"d M Y f" }}
-                                          <i class="fa fa-user" data-original-title="" title=""></i>Admin
-                                    </small>
-                                    
-      					 <p>{% autoescape off %}{{ post.preview_text|linebreaksbr }}{% endautoescape %}</p>
+                <small>
+                      <i class="fa fa-calendar" data-original-title="" title=""></i>{{ post.date_create|date:"d M Y f" }}
+                      <i class="fa fa-user" data-original-title="" title=""></i>Admin
+                </small>
+      					<p>{% autoescape off %}{{ post.preview_text|linebreaksbr }}{% endautoescape %}</p>
       				</div>
       			</div>
       			<div class="col-md-5 col-sm-6 col-xs-12">
@@ -34,6 +33,57 @@
     <div class="post-banner">
       {% banner 'long' %}
     </div>
+
+    {% if comments %}
+      <li id="id-profile">
+        <div class="timeline-badge default"><i class="fa fa-comment" data-original-title="" title=""></i></div>
+        <h1 class="timeline-head">Комментарии</h1>
+      </li>
+    {% endif %}
+
+    {% for comment in comments %}
+      <li>
+        <div class="timeline-badge primary"></div>
+        <div class="timeline-panel">
+        <h3>{{ comment.name }}</h3>
+        <div class="hr-left"></div>
+        <p>{{ comment.comment }}</p>
+      </li>
+    {% endfor %}
+
+    <li>
+      <div class="timeline-badge primary"></div>
+      <div class="timeline-panel">
+        <h1>Оставить комментарий</h1>
+        <div class="hr-left"></div>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.errors }}
+          {{ form.content_type }}
+          {{ form.object_pk }}
+          {{ form.timestamp }}
+          {{ form.security_hash }}
+          {{ form.honeypot }}
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input class="form-control input-lg" placeholder="Имя..." name="{{ form.name.html_name }}"> 
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <textarea class="form-control input-lg" rows="7" placeholder="Комментарий..." name="{{ form.comment.html_name }}"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-lg btn-primary btn-block">Отправить</button>
+          </div>
+        </form>
+      </div>
+  </li>
 
 </ul>
 {% endblock %}

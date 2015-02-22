@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
+    'django.contrib.comments',
     'compressor',    
     'static_sitemaps',
     'sorl.thumbnail',

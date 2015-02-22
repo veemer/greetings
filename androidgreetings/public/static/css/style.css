@@ -900,3 +900,7 @@ div.post-banner {
     margin-bottom: 20px;
     position: relative;
 }
+
+#id_honeypot {
+    display: none;
+}
