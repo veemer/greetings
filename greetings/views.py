@@ -160,7 +160,9 @@ class GreetingsList(BaseMixin, SeoMixin, ListView):
         return qs.filter(category=self.child_cat)
 
     def get_h1(self):
+
         page = self.kwargs.get('page', 1)
+
         if page != 1:
             return u'Поздравления с днем рождения {} - страница {}'.format(self.child_cat.name, page)
         else:
@@ -170,7 +172,13 @@ class GreetingsList(BaseMixin, SeoMixin, ListView):
         return self.get_h1()
 
     def get_meta_description(self):
-        return u'Здесь вы сможете найти поздравления с днем рождения {}'.format(self.child_cat.name)
+
+        page = self.kwargs.get('page', 1)
+
+        if page == 1:
+            return u'Здесь вы сможете найти поздравления с днем рождения {}'.format(self.child_cat.name)
+        else:
+            return u'Здесь вы сможете найти поздравления с днем рождения {} - страница {}'.format(self.child_cat.name, page)
 
     def get_meta_keywords(self):
         return u'поздравления день рождения {}'.format(self.child_cat.name)
