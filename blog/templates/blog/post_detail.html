@@ -1,11 +1,15 @@
 {% extends 'greetings/base.html' %}
 {% load banner %}
 
+{% block h1_title %}
+  <h1 itemprop="name">{{ h1_title }}</h1>
+{% endblock %}
+
 {% block content %}
 <ul class="timeline">
 	<li>
       	<div class="timeline-badge primary"></div>
-      	<div class="timeline-panel">
+      	<section class="timeline-panel" itemscope itemtype="http://schema.org/Article">
       		<div class="row" id="blog">
       			<div class="col-md-7 col-sm-6 col-xs-12">
       				<div class="blog-content">
@@ -13,11 +17,11 @@
                       <i class="fa fa-calendar" data-original-title="" title=""></i>{{ post.date_create|date:"d M Y f" }}
                       <i class="fa fa-user" data-original-title="" title=""></i>Admin
                 </small>
-      					<p>{% autoescape off %}{{ post.preview_text|linebreaksbr }}{% endautoescape %}</p>
+      					<p itemprop="description">{% autoescape off %}{{ post.preview_text|linebreaksbr }}{% endautoescape %}</p>
       				</div>
       			</div>
       			<div class="col-md-5 col-sm-6 col-xs-12">
-      				<img src="{{ post.image.url }}" class="img-responsive">
+      				<img itemprop="image" src="{{ post.image.url }}" class="img-responsive">
       			</div>
       		</div>
       		<div class="row post-detail">
@@ -27,7 +31,7 @@
       				</div>
       			</div>
       		</div>
-      	</div>
+      	</section>
     </li>
 
     <div class="post-banner">
@@ -37,7 +41,7 @@
     {% if comments %}
       <li id="id-profile">
         <div class="timeline-badge default"><i class="fa fa-comment" data-original-title="" title=""></i></div>
-        <h1 class="timeline-head">Комментарии</h1>
+        <h2 class="timeline-head">Комментарии</h2>
       </li>
     {% endif %}
 
@@ -54,7 +58,7 @@
     <li>
       <div class="timeline-badge primary"></div>
       <div class="timeline-panel">
-        <h1>Оставить комментарий</h1>
+        <h2>Оставить комментарий</h2>
         <div class="hr-left"></div>
         <form method="post">
           {% csrf_token %}

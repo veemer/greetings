@@ -7,7 +7,7 @@
 	{% for post in posts %}
 		<li>
 	      	<div class="timeline-badge primary"></div>
-	      	<div class="timeline-panel">
+	      	<section class="timeline-panel">
 	      		<div class="row" id="blog">
 	      			<div class="col-md-7 col-sm-6 col-xs-12">
 	      				<div class="blog-content">
@@ -24,7 +24,7 @@
 	      				<img src="{{ post.image.url }}" class="img-responsive">
 	      			</div>
 	      		</div>
-	      	</div>
+	      	</section>
 	    </li>
         <!-- banner -->
         {% if forloop.counter == 3 %}
