@@ -1,15 +1,14 @@
 {% extends 'greetings/base.html' %}
 {% load banner %}
 
-{% block h1_title %}
-  <h1 itemprop="name">{{ h1_title }}</h1>
-{% endblock %}
+{% block h1_title %}{% endblock %}
 
 {% block content %}
 <ul class="timeline">
 	<li>
       	<div class="timeline-badge primary"></div>
       	<section class="timeline-panel" itemscope itemtype="http://schema.org/Article">
+        <h1 itemprop="name">{{ h1_title }}</h1>
       		<div class="row" id="blog">
       			<div class="col-md-7 col-sm-6 col-xs-12">
       				<div class="blog-content">
