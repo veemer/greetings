@@ -1,6 +1,15 @@
 {% extends 'greetings/base.html' %}
 {% load banner %}
 
+{% block meta %}
+{{ block.super }}
+
+<meta property="og:title" content="{{ h1_title }}" />
+<meta property="og:description" content="{{ post.preview_text|striptags }}" />
+<meta property="og:image" content="{{ post.image.url }}" />
+
+{% endblock %}
+
 {% block h1_title %}{% endblock %}
 
 {% block content %}
