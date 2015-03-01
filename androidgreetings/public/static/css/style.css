@@ -930,3 +930,11 @@ ol.carousel-indicators li {
 ol.carousel-indicators li.active {
     background-color: #777!important;
 }
+
+.yashare-auto-init {
+    display: inline-block;
+}
+
+.hr-share {
+    width: 220px!important;
+};
