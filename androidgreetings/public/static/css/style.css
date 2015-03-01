@@ -904,3 +904,29 @@ div.post-banner {
 #id_honeypot {
     display: none;
 }
+
+div.nexus-background {
+    position: absolute;
+}
+
+#carousel-example-generic {
+    width: 217px;
+    margin-left: 16px;
+}
+
+.phone {
+    height: 470px;
+    padding-top: 30px;
+}
+
+.nexus-background img {
+    margin-top: -42px;
+}
+
+ol.carousel-indicators li {
+    border-color: #777!important;
+}
+
+ol.carousel-indicators li.active {
+    background-color: #777!important;
+}
