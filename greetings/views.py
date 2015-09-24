@@ -64,11 +64,10 @@ class BaseMixin(object):
 
         return super(BaseMixin, self).dispatch(request, *args, **kwargs)
 
-
     def get_context_data(self, **kwargs):
 
         context = super(BaseMixin, self).get_context_data(**kwargs)
-        
+
         context['root_cat'] = self.root_cat
         context['root_cats'] = self.root_cats
 
@@ -182,3 +181,16 @@ class GreetingsList(BaseMixin, SeoMixin, ListView):
 
     def get_meta_keywords(self):
         return u'поздравления день рождения {}'.format(self.child_cat.name)
+
+
+class Voice(SeoMixin, TemplateView):
+    template_name = 'greetings/voice.html'
+
+    def get_title(self):
+        return u'Голосовые поздравления'
+
+    def get_meta_description(self):
+        return u'Здесь вы можете отправить голосовые поздравления'
+
+    def get_meta_keywords(self):
+        return u'поздравления голосовые розыгрыши'
