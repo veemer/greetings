@@ -189,6 +189,9 @@ class Voice(SeoMixin, TemplateView):
     def get_title(self):
         return u'Голосовые поздравления'
 
+    def get_h1(self):
+        return self.get_title()
+
     def get_meta_description(self):
         return u'Здесь вы можете отправить голосовые поздравления'
 
