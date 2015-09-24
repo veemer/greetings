@@ -128,10 +128,12 @@
                             </button>
                         </div>
                         {% url 'posts_list' as posts_list_url %}
+                        {% url 'voice' as voice_url %}
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav navbar-left">
                                 <li class="page-scroll{% if request.path == '/' %} active{% endif %}"><a href="/">// Главная</a></li>
                                 <li class="page-scroll{% if request.path == posts_list_url %} active{% endif %}"><a href="{{ posts_list_url }}">// Статьи</a></li>
+                                <li class="page-scroll{% if request.path == voice_url %} active{% endif %}"><a href="{{ voice_url }}">// Голосовые</a></li>
                             </ul>
                         </div>
                     </nav>
